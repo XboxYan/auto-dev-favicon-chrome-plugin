@@ -1,0 +1,38 @@
+{
+  "name": "auto dev favicon",
+  "description": "为不同的开发环境自动切换favicon",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "permissions": [
+    "storage", 
+    "activeTab", 
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["urlpattern-polyfill.min.js","default_options.js","content-script.js"],
+      "exclude_matches": ["*://developer.mozilla.org/*", "*://developer.chrome.com/*"]
+    }
+  ],
+  "action": {
+    "default_title": "点击打开配置页",
+    "default_icon": {
+      "16": "/image/action.png",
+      "32": "/image/action.png",
+      "48": "/image/action.png",
+      "128": "/image/action.png"
+    }
+  },
+  "options_page": "options/index.html",
+  "icons": {
+    "16": "/image/logo.png",
+    "32": "/image/logo.png",
+    "48": "/image/logo.png",
+    "128": "/image/logo.png"
+  },
+  "homepage_url": "https://github.com/XboxYan/auto-dev-favicon-chrome-plugin"
+}
