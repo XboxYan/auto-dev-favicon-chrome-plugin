@@ -73,7 +73,7 @@ async function setFavicon(env, color) {
     link.href= favicon;
 }
 
-chrome.storage.local.get('options', ({options=default_options}) => {
+chrome.storage.sync.get('options', ({options=default_options}) => {
     let isMatch = false;
     options.forEach(option => {
         option.matches.forEach(reg => {

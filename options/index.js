@@ -41,7 +41,7 @@ const temp = (el={}) => `<div class="items-color">
     </div>
     <a class="del">移除</a>`
 
-chrome.storage.local.get('options', ({options=default_options}) => {
+chrome.storage.sync.get('options', ({options=default_options}) => {
     list.innerHTML = options.map(el => `<div class="items" style="--color: ${el.color}">
         ${temp(el)}
     </div>`).join('')
@@ -91,7 +91,7 @@ save.addEventListener('click', function(){
             const matches = item.querySelector('div.input').innerText.split(',').map(el => el.trim());
             return {color, name, matches}
         })
-        chrome.storage.local.set({options}, () => {
+        chrome.storage.sync.set({options}, () => {
             console.log(options)
             showMessage('🎉 保存成功~')
         })
