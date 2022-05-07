@@ -73,18 +73,26 @@ async function setFavicon(env, color) {
     link.href= favicon;
 }
 
-chrome.storage.sync.get('options', ({options=default_options}) => {
-    let isMatch = false;
-    options.forEach(option => {
-        option.matches.forEach(reg => {
-            const pattern = new URLPattern({
-                hostname: reg
+// console.log('init')
+
+window.onload = () => {
+    console.log('onload')
+    chrome.storage.sync.get('options', ({options=default_options}) => {
+        let isMatch = false;
+        options.forEach(option => {
+            option.matches.forEach(reg => {
+                const pattern = new URLPattern({
+                    hostname: reg
+                })
+                if (pattern.test(location.href) && !isMatch) {
+                    isMatch = true;
+                    // console.log(option)
+                    setFavicon(option.name, option.color);
+                }
             })
-            if (pattern.test(location.href) && !isMatch) {
-                isMatch = true;
-                setFavicon(option.name, option.color);
-            }
         })
     })
-})
+}
+
+
 

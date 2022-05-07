@@ -109,7 +109,7 @@ body {
     height: 30px;
     background-color: var(--color, #f44336);
     border-radius: 50%;
-    margin: 6px auto;
+    margin: 7px auto;
     position: relative;
     cursor: pointer;
 }
@@ -270,9 +270,26 @@ body {
     font-weight: lighter;
 }
 
-.show {
+.messageInfo.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
     z-index: 9;
+}
+
+.item-check{
+    display: block;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #eee;
+    border-radius: 4px;
+    margin: 7px auto;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.item-check:checked{
+    border-color: royalblue;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E %3Cpath fill='%23fff' d='M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z'%3E%3C/path%3E %3C/svg%3E") center / 60% no-repeat royalblue;
 }

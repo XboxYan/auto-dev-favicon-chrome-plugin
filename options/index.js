@@ -42,7 +42,7 @@ const temp = (el={}) => `<div class="items-color">
     <a class="del">移除</a>`
 
 chrome.storage.sync.get('options', ({options=default_options}) => {
-    list.innerHTML = options.map(el => `<div class="items" style="--color: ${el.color}">
+    list.innerHTML = options.map(el => `<div class="items" style="--color:${el.color}">
         ${temp(el)}
     </div>`).join('')
 })
@@ -86,7 +86,7 @@ save.addEventListener('click', function(){
     } else {
         const items = [...list.querySelectorAll('.items')];
         const options = items.map(item => {
-            const color = item.style.getPropertyValue('--color');
+            const color = item.style.getPropertyValue('--color').trim();
             const name = item.querySelector('input.input').value;
             const matches = item.querySelector('div.input').innerText.split(',').map(el => el.trim());
             return {color, name, matches}

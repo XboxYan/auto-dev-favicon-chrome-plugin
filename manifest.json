@@ -15,7 +15,8 @@
     {
       "matches": ["*://*/*"],
       "js": ["urlpattern-polyfill.min.js","default_options.js","content-script.js"],
-      "exclude_matches": ["*://developer.mozilla.org/*", "*://developer.chrome.com/*"]
+      "exclude_matches": ["*://developer.mozilla.org/*", "*://developer.chrome.com/*"],
+      "run_at": "document_end"
     }
   ],
   "action": {
