@@ -1,7 +1,7 @@
 {
   "name": "auto dev favicon",
   "description": "为不同的开发环境自动切换favicon",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 3,
   "permissions": [
     "storage", 
