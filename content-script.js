@@ -1,21 +1,15 @@
 function img2Base64(url) {
     return new Promise(resolve => {
-        let canvas = document.createElement('canvas'),
-        ctx = canvas.getContext('2d'),
-        img = new Image();
-        img.crossOrigin = 'anonymous';//解决Canvas.toDataURL 图片跨域问题
-        img.onload = () => {
-            canvas.height = img.height;
-            canvas.width = img.width;
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            let dataURL = canvas.toDataURL("image/png");
-            resolve(dataURL);
-            canvas = null;
-        };
-        img.onerror = () => {
-            resolve("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODQgNTEyIj4gPHBhdGggZmlsbD0iIzRFNTA1NSIgZD0iTTIyNCAxMzZWMEgyNEMxMC43IDAgMCAxMC43IDAgMjR2NDY0YzAgMTMuMyAxMC43IDI0IDI0IDI0aDMzNmMxMy4zIDAgMjQtMTAuNyAyNC0yNFYxNjBIMjQ4Yy0xMy4yIDAtMjQtMTAuOC0yNC0yNHptMTYwLTE0LjF2Ni4xSDI1NlYwaDYuMWM2LjQgMCAxMi41IDIuNSAxNyA3bDk3LjkgOThjNC41IDQuNSA3IDEwLjYgNyAxNi45eiI+PC9wYXRoPiA8L3N2Zz4=");
+        try {
+            chrome.runtime.sendMessage({
+                cmd: 'img2Base64',
+                url: url
+            }, (response) => {
+                resolve(response)
+            });
+        } catch (error) {
+            console.log(error)
         }
-        img.src = url;
     })
 }
 
